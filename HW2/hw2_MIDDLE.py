@@ -45,13 +45,13 @@ def calc_lucky(N):
     return lucky(N+1)[0]
     
 if __name__ == "__main__":    
-    print(calc_lucky(1))
-    print(calc_lucky(2))
-    print(calc_lucky(3))
-    print(calc_lucky(4))
-    print(calc_lucky(5))
-    print(calc_lucky(6))
-    print(calc_lucky(7))
-    print(calc_lucky(8))
-    print(calc_lucky(9))
-    print(calc_lucky(10))
+    print(1,calc_lucky(1))
+    print(2,calc_lucky(2))
+    print(3,calc_lucky(3))
+    print(4,calc_lucky(4))
+    print(5,calc_lucky(5))
+    print(6,calc_lucky(6))
+    print(7,calc_lucky(7))
+    print(8,calc_lucky(8))
+    print(9,calc_lucky(9))
+    print(10,calc_lucky(10))
