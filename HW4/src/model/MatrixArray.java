@@ -33,4 +33,18 @@ public class MatrixArray<T> implements IArray<T> {
     public T get(int index) {
         return array.get(index / vector).get(index % vector);
     }
+
+
+    @Override
+    public void add(T item, int index){    
+        array.get(index / vector).add(item, index);
+        size++;
+    }
+
+    @Override
+    public T remove(int index){         
+        size--;
+        return array.get(index / vector).remove(index);
+    }
+
 }

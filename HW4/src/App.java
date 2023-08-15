@@ -13,6 +13,9 @@ public class App {
         testAddArray(vectorArray, 100_000);
         testAddArray(factorArray, 100_000);
         testAddArray(matrixArray, 100_000);
+
+
+        
     }
 
     private static void testAddArray(IArray data, int total) {
