@@ -43,9 +43,10 @@ public class FactorArray<T> implements IArray<T> {
 
     @Override
     public void add(T item, int index){ 
-        resize();
+        if (size() == array.length)
+            resize();
         size++;
-        for (int i = size(); i >index; i--){
+        for (int i = size()-1; i >index; i--){
             if (i-1<0){
                 break;
             }           

@@ -41,13 +41,14 @@ public class MatrixArray<T> implements IArray<T> {
             array.add(new VectorArray<T>(vector));
         size ++;
 
-        array.get(index / vector).add(item, index);
+        array.get(index / vector).add(item, index% vector);
     }
 
     @Override
     public T remove(int index){         
         size--;
-        return array.get(index / vector).remove(index);
+        if (index>=size()) return null;
+        return array.get(index / vector).remove(index% vector);
     }
 
 }

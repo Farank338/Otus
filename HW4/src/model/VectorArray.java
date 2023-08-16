@@ -61,6 +61,7 @@ public class VectorArray<T> implements IArray<T> {
 
     @Override
     public T remove(int index){
+        if (index>=size()) return null;
         T obj=(T)array[index];
         for (int i = index; i <array.length-1; i++){            
             array[i]=array[i+1];
