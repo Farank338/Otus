@@ -36,9 +36,12 @@ public class MatrixArray<T> implements IArray<T> {
 
 
     @Override
-    public void add(T item, int index){    
+    public void add(T item, int index){         
+        if (size == array.size() * vector)
+            array.add(new VectorArray<T>(vector));
+        size ++;
+
         array.get(index / vector).add(item, index);
-        size++;
     }
 
     @Override

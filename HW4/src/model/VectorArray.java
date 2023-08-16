@@ -43,39 +43,29 @@ public class VectorArray<T> implements IArray<T> {
 
     @Override
     public void add(T item, int index){ 
-        resize();
-        shift(index);
-        array[index]=item;
-    }
+        if (size() == array.length)
+            resize();
 
-    // сдвигает с элемента pos на shift элементов 
-    //'элементы не влезающие в массив удаляются'
-    private void shift(int pos) {
-        if (pos>=array.length) return;
-
-        for (int i = array.length-1; i >=pos; i--){
+        for (int i = array.length-1; i >index; i--){
             if (i-1<0){
-                return;
+                break;
             }           
             array[i]=array[i-1];
         }
-            
+
+        array[index]=item;
+        size++;
     }
 
+    
+
     @Override
-    public T remove(int index){         
-        Object[] newArray = new Object[size()];
-        int shift=0;
-        T obj=null;
-        for (int i = 0; i <array.length; i++){
-            if(i==index){
-                obj=(T)array[i];
-                continue;
-            }
-            newArray[shift]=array[i];
-            shift=shift+1;
+    public T remove(int index){
+        T obj=(T)array[index];
+        for (int i = index; i <array.length-1; i++){            
+            array[i]=array[i+1];
         }
-        array=newArray;
+        size--;
         return obj;
     }
 }
