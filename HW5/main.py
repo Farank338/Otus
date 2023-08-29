@@ -90,9 +90,39 @@ def calc_bit(bits:int,variant:bool):
 
 
 horse=moveset(18014398509482496,horse=True)
-king=moveset(18014398509482496,horse=False)
+king=king_moveset(18014398509482496)
 print_board(horse)
 print()
 print_board(king)
 print(calc_bit(horse,True),calc_bit(king,True))
 print(calc_bit(horse,False),calc_bit(king,False))
+
+# check for auto test
+import os
+path=r'HW5/0.BITS/1.Bitboard - Король'
+test={}
+for file in os.listdir(path):
+    if file.endswith(".in"):
+        with open(os.path.join(path, file)) as f:
+            a=[]
+            a.append(int(f.readline()))
+            test[file[:-3]]=a
+
+for file in os.listdir(path):
+    if file.endswith(".out"):
+        with open(os.path.join(path, file)) as f:     
+            a=test[file[:-4]] 
+            a.append(int(f.readline()))
+            a.append(int(f.readline()))
+            test[file[:-4]]=a
+            
+for k in test:
+    i=test[k]
+    number=1<<i[0]
+    
+    res_posible=moveset(number,horse=False)
+    bits=calc_bit(res_posible,True)
+    if res_posible==i[2] and bits==i[1]:
+        print("test",k,"passed, input",i[0],"expected",i[1],i[2],"result",bits,res_posible)     
+    else:
+        print("test",k,"NOT passed, input",i[0],"expected",i[1],i[2],"result",bits,res_posible)    
