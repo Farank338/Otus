@@ -1,8 +1,34 @@
 import random
 import time
+import multiprocessing
 
+def CheckAlgorithm(func,func_name):
+    for i in range(1,5,1):
+        data=[random.random() for _ in range(pow(10,i))]
+        start_time = time.time()
 
+        p = multiprocessing.Process(target=func,args=(data,))
+        p.start()
+        p.join(120)
+        if p.is_alive():
+            p.terminate()
+            p.kill()
+            p.join()
+            return
 
+        func(data)
+        print(func_name," sort ", pow(10,i) ," unsorted \t",(time.time() - start_time))
+
+        start_time = time.time()
+        p = multiprocessing.Process(target=func,args=(data,))
+        p.start()
+        p.join(120)
+        if p.is_alive():
+            p.terminate()
+            p.kill()
+            p.join()
+            return
+        print(func_name," sort ", pow(10,i) ," sorted\t",(time.time() - start_time))
 
 
 def BubbleSort(data):
@@ -40,101 +66,8 @@ def ShellSort(data):
         step //= 2
     return data
 
-
-data_10000=[random.random() for _ in range(10000)]
-data_1000=[random.random() for _ in range(1000)]
-data_100=[random.random() for _ in range(100)]
-
-print()
-
-# BubbleSort
-start_time = time.time()
-BubbleSort(data_100)
-print("BubbleSort sort 100 unsorted \t",(time.time() - start_time))
-
-start_time = time.time()
-BubbleSort(data_100)
-print("BubbleSort sort 100 sorted\t",(time.time() - start_time))
-
-start_time = time.time()
-BubbleSort(data_1000)
-print("BubbleSort sort 1000 unsorted\t",(time.time() - start_time))
-
-start_time = time.time()
-BubbleSort(data_1000)
-print("BubbleSort sort 1000 sorted\t",(time.time() - start_time))
-
-start_time = time.time()
-BubbleSort(data_10000)
-print("BubbleSort sort 10000 unsorted\t",(time.time() - start_time))
-
-start_time = time.time()
-BubbleSort(data_10000)
-print("BubbleSort sort 10000 sorted\t",(time.time() - start_time))
-
-# print(data_10000[:5],data_10000[-5:])
-# print(data_1000[:5],data_1000[-5:])
-# print(data_100[:5],data_100[-5:])
-
-# InsertionSort
-data_10000=[random.random() for _ in range(10000)]
-data_1000=[random.random() for _ in range(1000)]
-data_100=[random.random() for _ in range(100)]
-
-start_time = time.time()
-InsertionSort(data_100)
-print("InsertionSort sort 100 unsorted\t",(time.time() - start_time))
-
-start_time = time.time()
-InsertionSort(data_100)
-print("InsertionSort sort 100 sorted\t",(time.time() - start_time))
-
-start_time = time.time()
-InsertionSort(data_1000)
-print("InsertionSort sort 1000 unsorted\t",(time.time() - start_time))
-
-start_time = time.time()
-InsertionSort(data_1000)
-print("InsertionSort sort 1000 sorted\t",(time.time() - start_time))
-
-start_time = time.time()
-InsertionSort(data_10000)
-print("InsertionSort sort 10000 unsorted\t",(time.time() - start_time))
-
-start_time = time.time()
-InsertionSort(data_10000)
-print("InsertionSort sort 10000 sorted\t",(time.time() - start_time))
-
-# ShellSort
-data_10000=[random.random() for _ in range(10000)]
-data_1000=[random.random() for _ in range(1000)]
-data_100=[random.random() for _ in range(100)]
-
-start_time = time.time()
-ShellSort(data_100)
-print("ShellSort sort 100 unsorted\t",(time.time() - start_time))
-
-start_time = time.time()
-ShellSort(data_100)
-print("ShellSort sort 100 sorted\t",(time.time() - start_time))
-
-start_time = time.time()
-ShellSort(data_1000)
-print("ShellSort sort 1000 unsorted\t",(time.time() - start_time))
-
-start_time = time.time()
-ShellSort(data_1000)
-print("ShellSort sort 1000 sorted\t",(time.time() - start_time))
-
-start_time = time.time()
-ShellSort(data_10000)
-print("ShellSort sort 10000 unsorted\t",(time.time() - start_time))
-
-start_time = time.time()
-ShellSort(data_10000)
-print("ShellSort sort 10000 sorted\t",(time.time() - start_time))
-
-# print(data_10000[:5],data_10000[-5:])
-# print(data_1000[:5],data_1000[-5:])
-# print(data_100[:5],data_100[-5:])
+CheckAlgorithm(BubbleSort,"BubbleSort")
+CheckAlgorithm(InsertionSort,"InsertionSort")
+CheckAlgorithm(ShellSort,"ShellSort")
+exit(0)
 
