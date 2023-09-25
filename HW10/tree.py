@@ -26,29 +26,29 @@ class NodeBinary:
         return self.r_child is not None
         
     def insert_node(self, node):
-        
+        # если ключ текущего узла меньше чем ключ добавляемого узла
         if self.key < node.key:
-            
+            # если у текущего узла есть правый потомок
             if self.has_r_child():
-                
+                # добавляем узел в поддерево, где корень - правый потомок текущего узла
                 self.r_child.insert_node(node)
-            
+            # если у текущего узла нет правого потомка
             else:
-                
+                # делаем добавляемый узел правым потомком текущего узла
                 self.r_child = node
-                
+                # задаем у правого потомка ссылку на родителя, которым является текущий узел
                 self.r_child.parent = self
-        
+        # если ключ текущего узла больше чем ключ добавляемого узла
         if self.key > node.key:
-            
+            # если у текущего узла есть левый потомок
             if self.has_l_child():
-                
+                # добавляем узел в поддерево, где корень - левый потомок текущего узла
                 self.l_child.insert_node(node)
-            
+            # если у текущего узла нет левого потомка
             else:
-                
+                # делаем добавляемый узел левым потомком текущего узла
                 self.l_child = node
-                
+                # задаем у левого потомка ссылку на родителя, которым является текущий узел
                 self.l_child.parent = self
                 
     def get_node(self, key):
@@ -60,21 +60,21 @@ class NodeBinary:
             return self.l_child.get_node(key)
         
     def remove_node(self):
-        
+        # если удаляемый узел является левым потомком своего родителя
         if self.is_l_child():
-            
+            # обнуляем у родителя ссылку на левого потомка
             self.parent.l_child = None
-        
+        # если правым
         else:
-            
+            # обнуляем у родителя ссылку на правого потомка
             self.parent.r_child = None
-        
+        # если у удаляемого узла есть левый потомок
         if self.has_l_child():
-            
+            # добавляем его в дерево, где корнем является родитель удаляемого узла
             self.parent.insert_node(self.l_child)
-        
+        # если у удаляемого узла есть правый потомок
         if self.has_r_child():
-            
+            # добавляем его в дерево, где корнем является родитель удаляемого узла
             self.parent.insert_node(self.r_child)
         
     def __iter__(self):
@@ -86,17 +86,35 @@ class NodeBinary:
             for k, v in self.r_child:
                 yield k, v
 
-   
+    # def __len__(self):
+    #     if not self.has_l_child() and not self.has_r_child():
+    #         return 1
+    #     if self.has_l_child() and not self.has_r_child():
+    #         return 1 + len(self.l_child)
+    #     if not self.has_l_child() and self.has_r_child():
+    #         return 1 + len(self.r_child)
+    #     return 1 + len(self.l_child) + len(self.r_child)
                 
     def rotate(self):
-       
+        #
+        #       rotate right:                   rotate left:
+        #
+        #       /           /                 /           /
+        #      P           X                 P           X
+        #     / \         / \               / \         / \
+        #    X  R  --->  L  P      or      L  X  --->  P  R
+        #   / \            / \               / \      / \
+        #  L  C           C  R              C  R     L  C
+        # 
+        #  X - node, "new root"; P - node parent, "old root"     
+        #
         P = self.parent
-        
+        # rotate right
         if self.is_l_child():
             C = self.r_child
             P.l_child = C
             self.r_child = P
-        
+        # rotate left
         else:
             C = self.l_child
             P.r_child = C
@@ -268,11 +286,11 @@ class TreeBinary:
         else:
             return []
 
-    
-    
-    
-    
-    
+    # def __len__(self):
+    #     if self.root is not None:
+    #         return len(self.root)
+    #     else:
+    #         return 0
 
 
 class TreeAVL(TreeBinary):
@@ -296,22 +314,22 @@ class TreeAVL(TreeBinary):
             if node_balance > 1:
                 node_l_child_balance = node.l_child.get_balance()
                 if node_l_child_balance >= 0:
-                    
+                    # поворот направо
                     self.rotate(node.l_child)
                 else:
-                    
+                    # поворот налево
                     self.rotate(node.l_child.r_child)
-                    
+                    # поворот направо
                     self.rotate(node.l_child)
             elif node_balance < -1:
                 node_r_child_balance = node.r_child.get_balance()
                 if node_r_child_balance <= 0:
-                    
+                    # поворот налево
                     self.rotate(node.r_child)
                 else:
-                    
+                    # поворот направо
                     self.rotate(node.r_child.l_child)
-                    
+                    # поворот налево
                     self.rotate(node.r_child)
             node = node.parent
 
