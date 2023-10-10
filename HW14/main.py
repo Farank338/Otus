@@ -46,10 +46,19 @@ class Trie:
 
 a=Trie()
 a.insert('abc')
-print(a.search('abc'))
-print(a.search('abdc'))
-print(a.search('ab'))
+print(a.search('abc'))      # True
+print(a.search('abdc'))     # False
+print(a.search('ab'))       # False
 print()
-print(a.startsWith('abc'))
-print(a.startsWith('abdc'))
-print(a.startsWith('ab'))
+print(a.startsWith('abc'))  # True
+print(a.startsWith('abdc')) # False
+print(a.startsWith('ab'))   # True
+
+print()
+trie =Trie();
+trie.insert("apple");
+print(trie.search("apple"));       # True
+print(trie.search("app"));         # False
+print(trie.startsWith("app"));     # True
+trie.insert("app");
+print(trie.search("app"));         # True
