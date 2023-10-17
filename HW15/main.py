@@ -143,7 +143,7 @@ print("массива int[] component",b.kos())
 
 print("Второй тест случайный граф")
 # 5 вершин N, от 0 до 5 связей Smax в каждой
-N, Smax = 5, 10
+N, Smax = 5, 5
 a=fill_vector(N,Smax)
 for i in a:
     print(i)
