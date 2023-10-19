@@ -61,7 +61,7 @@ class Graph:
         for i in self.nodes:
             i.calc_degree()
 
-    def demicron_in(self):
+    def demucron_in(self):
         res=[]
         max=0
         for i in self.nodes:
@@ -76,7 +76,7 @@ class Graph:
             res[i.degree_in].append(i.id)
         return res
     
-    def demicron_out(self):
+    def demucron_out(self):
         res=[]
         max=0
         for i in self.nodes:
@@ -103,8 +103,8 @@ b=Graph()
 b.insert(a)
 b.calc_degree()
 print("Первый тест.png компоненты")
-print("Результат аолгоритма демикрона по степеням входа",b.demicron_in())
-print("Результат аолгоритма демикрона по степеням выхода",b.demicron_out())
+print("Результат алгоритма Демукрона по степеням входа",b.demucron_in())
+print("Результат алгоритма Демукрона по степеням выхода",b.demucron_out())
 
 
 
@@ -117,6 +117,6 @@ for i in a:
 b=Graph()
 b.insert(a)
 b.calc_degree()
-print("Результат аолгоритма демикрона по степеням входа",b.demicron_in())
-print("Результат аолгоритма демикрона по степеням выхода",b.demicron_out())
+print("Результат алгоритма Демукрона по степеням входа",b.demucron_in())
+print("Результат алгоритма Демукрона по степеням выхода",b.demucron_out())
 
