@@ -151,6 +151,6 @@ b=Graph()
 b.insert(a)
 b.dfs()
 b.invert()
-print("массива int[] component",b.kos())
-print("Второй тест случайны граф результаты")
 
+print("Второй тест случайны граф результаты")
+print("массива int[] component",b.kos())
