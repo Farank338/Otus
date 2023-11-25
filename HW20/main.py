@@ -45,7 +45,23 @@ def search_1(pat, txt):
 
 # Самостоятельно написать функцию вычисления префикс-функции, медленный вариант, 2 байта.
 
+
+
 def prefix_function(str):
+    n = len(str)
+    pi=[0]*n
+    for i in range(1,n):
+        j = pi[i-1]
+        while (j > 0 and str[i] != str[j]):
+            j = pi[j-1]
+        if (str[i] == str[j]):
+            j=j+1
+        pi[i] = j    
+    return pi
+
+# Переписать алгоритм быстрого вычисления префикс-функции и разобраться в нём, 2 байта.
+
+def prefix_function_fast(str):
     n = len(str)
     p = [0]*n
     i = 1
@@ -63,21 +79,6 @@ def prefix_function(str):
                 j = p[j - 1]
 
     return p
-
-
-# Переписать алгоритм быстрого вычисления префикс-функции и разобраться в нём, 2 байта.
-
-def prefix_function_fast(str):
-    n = len(str)
-    pi=[0]*n
-    for i in range(1,n):
-        j = pi[i-1]
-        while (j > 0 and str[i] != str[j]):
-            j = pi[j-1]
-        if (str[i] == str[j]):
-            j=j+1
-        pi[i] = j    
-    return pi
 
 
 
