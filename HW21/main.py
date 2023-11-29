@@ -1,35 +1,3 @@
-
-# def RLE_encode(byte=-1,count=0):  
-#         if byte==-1:
-#             byte=message[i]
-#             count=1
-#             continue
-#         if byte!=message[i]:
-#             return byte,count
-        
-#         if byte==message[i]:
-#             # to keep count to byte size
-#             if count==255:
-#                 return byte,count
-#             count=count+1
-#             continue
-#     return byte,count
-
-# def RLE_decode(byte=-1,count=0):
-#     if byte == -1 or count==0:
-#         return
-    
-#     yield byte,count-1
-
-   
-# for i in b'123111222333112233':
-#     RLE_encode()
-
-# print(RLE_encode(b'123111222333112233'))
-
-data=b'123111222333112233'
-
-
 import sys
 if __name__ == "__main__":
     if len(sys.argv)<4 or ('decode' not in sys.argv[1] and 'encode' not in sys.argv[1]):
